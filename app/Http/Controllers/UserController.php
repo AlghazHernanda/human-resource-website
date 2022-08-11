@@ -41,9 +41,7 @@ class UserController extends Controller
 
     public function logout(Request $request)
     {
-        $user = Auth::user()->token;
-        $user->revoke();
-        return response(['message' => 'Je bent uitgelogd'], 200);
+        return "halo";
     }
 
     /**
@@ -63,6 +61,12 @@ class UserController extends Controller
 
         ]);
 
+        // try {
+        //     //code...
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        // }
+
         if ($validatedData['password'] == $validatedData['password_confirmation']) {
             //$validatedData['password'] = bcrypt($validatedData['password']); //di enkripsi dulu
             $validatedData['password'] = Hash::make($validatedData['password']); //bisa juga pake cara yang ini
@@ -70,11 +74,14 @@ class UserController extends Controller
 
             $user = User::create($validatedData); //masukin ke database
 
-            $token = $user->createToken('LaravelAuthApp')->accessToken;
+            $token = $user->createToken('myapptoken')->plainTextToken;
 
-            return response()->json(['token' => $token], 200);
+            $response = [
+                'user' => $user,
+                'token' => $token
+            ];
 
-
+            return response($response, 201);
 
             //$request->session()->flash('success', 'Registration successfull! please login'); //nampilin pesan sukses di halaman login
             //return redirect('/login')->with('success', 'Registration successfull! please login'); //sama aja kyk yg di atas, ini lebih simpel
