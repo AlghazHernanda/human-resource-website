@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+//protected route
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout', [UserController::class, 'logout']);
+});
+
+
 
 Route::post('/register', [UserController::class, 'store']);
-Route::post('/logout', [UserController::class, 'logout']);
-
 Route::post('/login', [UserController::class, 'authenticate']);
 
 // Route::post('/register', function (Request $request) {
