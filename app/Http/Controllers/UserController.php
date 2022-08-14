@@ -15,33 +15,45 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return User::all();
     }
 
     public function authenticate(Request $request)
     {
-        $data = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        //dd($data);
-        //$credentials = request('email','senha');
-        //dd(Auth::attempt($data));
-        if (!Auth::attempt($data)) {
-            return response()->json(['error' => 'Unauthorised'], 401);
-        } else {
-            $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
-            return response()->json(['token' => $token], 200);
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        // Check email
+        $user = User::where('email', $fields['email'])->first();
+
+        // Check password
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
+            return response([
+                'message' => 'Bad creds'
+            ], 401);
         }
 
-        //return "login";
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
     public function logout(Request $request)
     {
-        return "halo";
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'Logged out'
+        ];
     }
 
     /**
@@ -78,13 +90,12 @@ class UserController extends Controller
 
             $response = [
                 'user' => $user,
-                'token' => $token
+                'token' => $token,
+                'message' => 'Registration successfull! please login',
             ];
 
+            //$response['message]  cara akses
             return response($response, 201);
-
-            //$request->session()->flash('success', 'Registration successfull! please login'); //nampilin pesan sukses di halaman login
-            //return redirect('/login')->with('success', 'Registration successfull! please login'); //sama aja kyk yg di atas, ini lebih simpel
         } else {
             return back()->with('RegisterError', 'Register Failed');
         }
