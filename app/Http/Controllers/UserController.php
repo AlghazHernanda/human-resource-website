@@ -27,10 +27,10 @@ class UserController extends Controller
             'password' => 'required|string'
         ]);
 
-        // Check email
+        // verifikasi email
         $user = User::where('email', $fields['email'])->first();
 
-        // Check password
+        // verifikasi password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'message' => 'Bad creds'
