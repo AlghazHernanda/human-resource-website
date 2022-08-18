@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\HRController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 //protected route
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/logout', [UserController::class, 'logout']);
+    Route::post('/logout', [HRController::class, 'logout']);
 });
 
-Route::post('/register', [UserController::class, 'store']);
-Route::get('/index', [UserController::class, 'index']);
-Route::post('/login', [UserController::class, 'authenticate']);
+Route::post('/register', [HRController::class, 'store']);
+Route::get('/index', [HRController::class, 'index']);
+Route::post('/login', [HRController::class, 'authenticate']);
 
 // Route::post('/register', function (Request $request) {
 //     return "halo";
