@@ -23,9 +23,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::post('/register', [HRController::class, 'store']);
 Route::get('/index', [HRController::class, 'index']);
 Route::post('/login', [HRController::class, 'authenticate']);
-
 //storeRole
 Route::post('/storeRole', [HRController::class, 'storeRole']);
+//storedivision
+Route::post('/storeDivision', [HRController::class, 'storeDivision']);
 
 // Route::post('/register', function (Request $request) {
 //     return "halo";
