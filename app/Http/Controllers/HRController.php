@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 //use Auth;
@@ -20,6 +21,7 @@ class HRController extends Controller
         return User::all();
     }
 
+    //login
     public function authenticate(Request $request)
     {
         $fields = $request->validate([
@@ -47,6 +49,7 @@ class HRController extends Controller
         return response($response, 201);
     }
 
+    //logout
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
@@ -62,46 +65,71 @@ class HRController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //Create HR and store
     public function store(Request $request)
     {
-        // mengvalidasi data nya agar ga ngasal
-        $validatedData = $request->validate([
-            'name' => 'required|max:255', //wajib diisi | maksimal 255
-            'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255|confirmed',
-            'password_confirmation' => 'required'
+        try {
+            // mengvalidasi data nya agar ga ngasal
+            $validatedData = $request->validate([
+                'name' => 'required|max:255', //wajib diisi | maksimal 255
+                'email' => 'required|email:dns|unique:users',
+                'password' => 'required|min:5|max:255|confirmed',
+                'password_confirmation' => 'required'
 
-        ]);
+            ]);
 
-        // try {
-        //     //code...
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        // }
+            if ($validatedData['password'] == $validatedData['password_confirmation']) {
+                //$validatedData['password'] = bcrypt($validatedData['password']); //di enkripsi dulu
+                $validatedData['password'] = Hash::make($validatedData['password']); //bisa juga pake cara yang ini
+                $validatedData['password_confirmation'] = $validatedData['password'];
 
-        if ($validatedData['password'] == $validatedData['password_confirmation']) {
-            //$validatedData['password'] = bcrypt($validatedData['password']); //di enkripsi dulu
-            $validatedData['password'] = Hash::make($validatedData['password']); //bisa juga pake cara yang ini
-            $validatedData['password_confirmation'] = $validatedData['password'];
+                $user = User::create($validatedData); //masukin ke database
 
-            $user = User::create($validatedData); //masukin ke database
+                $token = $user->createToken('myapptoken')->plainTextToken;
 
-            $token = $user->createToken('myapptoken')->plainTextToken;
-
-            $response = [
-                'user' => $user,
-                'token' => $token,
-                'message' => 'Registration successfull! please login',
-            ];
-
-            //$response['message]  cara akses
-            return response($response, 201);
-        } else {
-            return back()->with('RegisterError', 'Register Failed');
+                $response = [
+                    'user' => $user,
+                    'token' => $token,
+                    'message' => 'Registration successfull! please login',
+                ];
+                //$response['message]  cara akses
+                return response($response, 201);
+            }
+        } catch (\Throwable $th) {
+            return response($th, 400);
         }
 
         // return "halo";
     }
+
+    public function storeRole(Request $request)
+    {
+        try {
+            // mengvalidasi data nya agar ga ngasal
+            $validatedData = $request->validate([
+                'role_name' => 'required', //wajib diisi | maksimal 255
+                'division' => 'required',
+                'salary' => 'required',
+
+            ]);
+
+            $role = Role::create($validatedData);
+
+            $response = [
+                'role' => $role,
+                'message' => 'Registration successfull! please login',
+            ];
+
+            //dd($response);
+
+            //$response['message]  cara akses
+            return response($response, 201);
+        } catch (\Throwable $th) {
+            return response($th, 400);
+        }
+    }
+
 
     /**
      * Display the specified resource.
