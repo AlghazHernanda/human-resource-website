@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -118,7 +119,31 @@ class HRController extends Controller
 
             $response = [
                 'role' => $role,
-                'message' => 'Registration successfull! please login',
+                'message' => 'Role successfull created',
+            ];
+
+            //dd($response);
+
+            //$response['message]  cara akses
+            return response($response, 201);
+        } catch (\Throwable $th) {
+            return response($th, 400);
+        }
+    }
+
+    public function storeDivision(Request $request)
+    {
+        try {
+            // mengvalidasi data nya agar ga ngasal
+            $validatedData = $request->validate([
+                'division_name' => 'required', //wajib diisi | maksimal 255
+            ]);
+
+            $division = Division::create($validatedData);
+
+            $response = [
+                'division' => $division,
+                'message' => 'division successfull created',
             ];
 
             //dd($response);
