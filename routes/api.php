@@ -19,10 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [HRController::class, 'logout']);
 });
-
+//Hr register and login 
 Route::post('/register', [HRController::class, 'store']);
 Route::get('/index', [HRController::class, 'index']);
 Route::post('/login', [HRController::class, 'authenticate']);
+
+//storeRole
+Route::post('/storeRole', [HRController::class, 'storeRole']);
 
 // Route::post('/register', function (Request $request) {
 //     return "halo";
