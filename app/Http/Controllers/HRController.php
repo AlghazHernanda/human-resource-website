@@ -155,6 +155,42 @@ class HRController extends Controller
         }
     }
 
+    public function storeEmployee(Request $request)
+    {
+        try {
+            // mengvalidasi data nya agar ga ngasal
+            $validatedData = $request->validate([
+                'name' => 'required|max:255', //wajib diisi | maksimal 255
+                'email' => 'required|email:dns|unique:users',
+                'password' => 'required|min:5|max:255|confirmed',
+                'password_confirmation' => 'required'
+
+            ]);
+
+            if ($validatedData['password'] == $validatedData['password_confirmation']) {
+                //$validatedData['password'] = bcrypt($validatedData['password']); //di enkripsi dulu
+                $validatedData['password'] = Hash::make($validatedData['password']); //bisa juga pake cara yang ini
+                $validatedData['password_confirmation'] = $validatedData['password'];
+
+                $user = User::create($validatedData); //masukin ke database
+
+                $token = $user->createToken('myapptoken')->plainTextToken;
+
+                $response = [
+                    'user' => $user,
+                    'token' => $token,
+                    'message' => 'Registration successfull! please login',
+                ];
+                //$response['message]  cara akses
+                return response($response, 201);
+            }
+        } catch (\Throwable $th) {
+            return response($th, 400);
+        }
+
+        // return "halo";
+    }
+
 
     /**
      * Display the specified resource.
