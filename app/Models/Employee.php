@@ -51,7 +51,13 @@ class Employee extends Authenticatable
     public function division_employee()
     {
         //relasi one to one
-        //namanya jadi author, dan mengambil user id
+        //namanya jadi division_employee, dan mengambil user id
         return $this->belongsTo(Division::class, 'division_id');
+    }
+    public function role_employee()
+    {
+        //relasi one to one
+        //namanya jadi role_employee, dan mengambil user id
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }
