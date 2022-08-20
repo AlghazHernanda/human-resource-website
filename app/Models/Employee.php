@@ -47,4 +47,11 @@ class Employee extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function division_employee()
+    {
+        //relasi one to one
+        //namanya jadi author, dan mengambil user id
+        return $this->belongsTo(Division::class, 'division_id');
+    }
 }
