@@ -12,4 +12,10 @@ class Division extends Model
 
 
     use HasFactory;
+
+    public function divisions()
+    {
+        //relasi one to many
+        return $this->hasMany(Employee::class);
+    }
 }
