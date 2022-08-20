@@ -11,4 +11,10 @@ class Role extends Model
     protected $guarded = ['id'];
 
     use HasFactory;
+
+    public function roles()
+    {
+        //relasi one to many
+        return $this->hasMany(Employee::class);
+    }
 }
