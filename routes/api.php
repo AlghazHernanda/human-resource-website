@@ -27,6 +27,8 @@ Route::post('/login', [HRController::class, 'authenticate']);
 Route::post('/storeRole', [HRController::class, 'storeRole']);
 //storedivision
 Route::post('/storeDivision', [HRController::class, 'storeDivision']);
+//storeEmployee
+Route::post('/storeEmployee', [HRController::class, 'storeEmployee']);
 
 // Route::post('/register', function (Request $request) {
 //     return "halo";
