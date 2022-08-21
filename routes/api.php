@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HRController;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ Route::post('/storeDivision', [HRController::class, 'storeDivision']);
 Route::post('/storeEmployee', [HRController::class, 'storeEmployee']);
 
 
-Route::get('/editEmployee/{employee:id}', [Employee::class, 'edit'])
+Route::get('/editEmployee/{employee:id}', [EmployeeController::class, 'edit']);
 
 // Route::post('/register', function (Request $request) {
 //     return "halo";
