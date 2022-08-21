@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('email')->unique();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin');
-            $table->string('gaji');
+            $table->foreignId('gaji');
             $table->string('no_telepon')->nullable();
             $table->foreignId('division_id');
             $table->foreignId('role_id');
