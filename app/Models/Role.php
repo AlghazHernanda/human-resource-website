@@ -17,4 +17,9 @@ class Role extends Model
         //relasi one to many
         return $this->hasMany(Employee::class);
     }
+    public function gaji()
+    {
+        //relasi one to many
+        return $this->hasMany(Employee::class);
+    }
 }
