@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Division;
+use App\Models\Employee;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,19 @@ class HRController extends Controller
      */
     public function index()
     {
-        return User::all();
+        //test join table antara employee dan divisi
+        $employees = Employee::all();
+        foreach ($employees as $employee) {
+            $employee_division = $employee->division_employee->division_name;
+            $employee_role = $employee->role_employee->role_name;
+            $employee_gaji = $employee->role_gaji->salary;
+        }
+        $response = [
+            'employee_division' => $employee_division,
+            'employee_role' =>  $employee_role,
+            'employee_gaji' =>  $employee_gaji
+        ];
+        return response($response, 200);
     }
 
     //login
@@ -160,8 +173,15 @@ class HRController extends Controller
         try {
             // mengvalidasi data nya agar ga ngasal
             $validatedData = $request->validate([
-                'name' => 'required|max:255', //wajib diisi | maksimal 255
+                'fullname' => 'required|max:255', //wajib diisi | maksimal 255
                 'email' => 'required|email:dns|unique:users',
+                'jenis_kelamin' => 'required',
+                // 'tanggal_lahir' => 'required|date',
+                'gaji' => 'required',
+                // 'no_telepon' => 'required',
+                'division_id' => 'required',
+                'role_id' => 'required',
+                // 'image' => 'required',
                 'password' => 'required|min:5|max:255|confirmed',
                 'password_confirmation' => 'required'
 
@@ -172,12 +192,12 @@ class HRController extends Controller
                 $validatedData['password'] = Hash::make($validatedData['password']); //bisa juga pake cara yang ini
                 $validatedData['password_confirmation'] = $validatedData['password'];
 
-                $user = User::create($validatedData); //masukin ke database
+                $employee = Employee::create($validatedData); //masukin ke database
 
-                $token = $user->createToken('myapptoken')->plainTextToken;
+                $token = $employee->createToken('myapptoken')->plainTextToken;
 
                 $response = [
-                    'user' => $user,
+                    'employee' => $employee,
                     'token' => $token,
                     'message' => 'Registration successfull! please login',
                 ];
