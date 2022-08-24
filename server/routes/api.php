@@ -38,6 +38,6 @@ Route::post('/storeEmployee', [HRController::class, 'storeEmployee']);
 Route::get('/editEmployee/{employee:id}', [EmployeeController::class, 'edit']);
 Route::put('/editEmployee/{employee:id}', [EmployeeController::class, 'update']);
 
-// Route::post('/register', function (Request $request) {
-//     return "halo";
-// });
+Route::post('/register', function (Request $request) {
+    return "halo";
+});
