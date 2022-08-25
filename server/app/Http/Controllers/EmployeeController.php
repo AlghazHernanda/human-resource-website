@@ -23,9 +23,9 @@ class EmployeeController extends Controller
             ];
             return response($response, 200);
         } catch (\Throwable $th) {
-            //report($th);
+            report($th);
 
-            return response($th, 404);
+            // return response($th, 404);
         }
     }
 
