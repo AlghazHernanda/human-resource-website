@@ -17,3 +17,10 @@
     margin: 10vh;
     padding: 4vh;
 }
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 10vw;
+
+}
+
