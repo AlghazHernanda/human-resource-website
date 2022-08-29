@@ -20,7 +20,10 @@
 
 .layout-grid {
     display: grid;
-    grid-template-columns: 10vw;
+    grid-template-columns: 352;
+}
 
+.sidebar {
+    
 }
 

@@ -1,9 +1,11 @@
 import React from "react";
+import { Menu } from 'antd';
 
 export default function SideBar() {
     return (
         <div className="sidebar">
             <Menu 
+                theme="dark"
                 items={[
                     {
                         key: 'myProfile',
