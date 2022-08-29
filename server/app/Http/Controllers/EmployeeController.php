@@ -9,6 +9,7 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class EmployeeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +28,33 @@ class EmployeeController extends Controller
 
             // return response($th, 404);
         }
+    }
+
+    public function authenticate(Request $request)
+    {
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        // verifikasi email
+        $employee = Employee::where('email', $fields['email'])->first();
+
+        // verifikasi password
+        if (!$employee || !Hash::check($fields['password'], $employee->password)) {
+            return response([
+                'message' => 'Bad creds'
+            ], 401);
+        }
+
+        $token = $employee->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'employee' => $employee,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
 
