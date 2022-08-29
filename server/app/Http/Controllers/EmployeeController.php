@@ -76,29 +76,29 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $Employee)
     {
-        //return "halo";
-        try {
-            // mengvalidasi data nya agar ga ngasal
-            $validatedData = $request->validate([
-                'fullname' => 'required|max:255', //wajib diisi | maksimal 255
-                'email' => 'required|email:dns|unique:users',
-                'jenis_kelamin' => 'required',
-                'tanggal_lahir' => 'required|date',
-                'gaji' => 'required',
-                'no_telepon' => 'required',
-                'division_id' => 'required',
-                'role_id' => 'required',
-                // 'image' => 'required',
-                // 'password' => 'required|min:5|max:255|confirmed',
-                // 'password_confirmation' => 'required'
+        return "halo";
+        // try {
+        //     // mengvalidasi data nya agar ga ngasal
+        //     $validatedData = $request->validate([
+        //         'fullname' => 'required|max:255', //wajib diisi | maksimal 255
+        //         'email' => 'required|email:dns|unique:users',
+        //         'jenis_kelamin' => 'required',
+        //         'tanggal_lahir' => 'required|date',
+        //         'gaji' => 'required',
+        //         'no_telepon' => 'required',
+        //         'division_id' => 'required',
+        //         'role_id' => 'required',
+        //         // 'image' => 'required',
+        //         // 'password' => 'required|min:5|max:255|confirmed',
+        //         // 'password_confirmation' => 'required'
 
-            ]);
+        //     ]);
 
 
-            //$response['message]  cara akses
-            // return response($response, 201);
-        } catch (\Throwable $th) {
-            return response($th, 400);
-        }
+        //     //$response['message]  cara akses
+        //     // return response($response, 201);
+        // } catch (\Throwable $th) {
+        //     return response($th, 400);
+        // }
     }
 }
