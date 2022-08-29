@@ -1,0 +1,19 @@
+.card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.login-wrapper {
+    background-color: blue;
+    position: relative;
+    align-items: center;
+    margin: 10vh;
+    padding: 4vh;
+}
