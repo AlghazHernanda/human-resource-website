@@ -195,7 +195,7 @@ class HRController extends Controller
 
                 $employee = Employee::create($validatedData); //masukin ke database
 
-                //$token = $employee->createToken('myapptoken')->plainTextToken;
+                $token = $employee->createToken('myapptoken')->plainTextToken;
 
                 $response = [
                     'employee' => $employee,
