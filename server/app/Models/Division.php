@@ -18,4 +18,10 @@ class Division extends Model
         //relasi one to many
         return $this->hasMany(Employee::class);
     }
+
+    public function divisions_role()
+    {
+        //relasi one to many
+        return $this->hasMany(Role::class);
+    }
 }
