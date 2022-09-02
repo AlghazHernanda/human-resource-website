@@ -11,6 +11,4 @@ class Salary extends Model
     protected $guarded = ['id'];
 
     use HasFactory;
-
-    //nanti kalau mau dijadiin relasi sama role, tinggal kyk skema division
 }
