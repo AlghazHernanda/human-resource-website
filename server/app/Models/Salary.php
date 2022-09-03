@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salary extends Model
 {
-    // biar gapake fillable, ini artinya cuma id doang yg gaboleh di masukin mass assigment
+
     protected $guarded = ['id'];
 
     use HasFactory;
