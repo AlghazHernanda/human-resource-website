@@ -20,10 +20,15 @@ use Illuminate\Support\Facades\Route;
 //protected route
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [HRController::class, 'logout']);
+
+    Route::get('/index', [HRController::class, 'index']);
+
+    //route EmployeeController
+    Route::post('/logoutEmployee', [EmployeeController::class, 'logout']);
 });
 //Hr register and login 
 Route::post('/register', [HRController::class, 'store']);
-Route::get('/index', [HRController::class, 'index']);
+
 Route::post('/login', [HRController::class, 'authenticate']);
 //storeRole
 Route::post('/storeRole', [HRController::class, 'storeRole']);
@@ -39,6 +44,8 @@ Route::post('/loginEmployee', [EmployeeController::class, 'authenticate']);
 
 Route::get('/editEmployee/{employee:id}', [EmployeeController::class, 'edit']);
 Route::put('/editEmployee/{employee:id}', [EmployeeController::class, 'update']);
+
+
 
 // Route::post('/register', function (Request $request) {
 //     return "halo";
