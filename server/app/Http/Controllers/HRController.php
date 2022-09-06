@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Division;
-use App\Models\Employee;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Division;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 //use Auth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class HRController extends Controller
 {
@@ -194,11 +195,11 @@ class HRController extends Controller
 
                 $employee = Employee::create($validatedData); //masukin ke database
 
-                $token = $employee->createToken('myapptoken')->plainTextToken;
+                // $token = $employee->createToken('myapptoken')->plainTextToken;
 
                 $response = [
                     'employee' => $employee,
-                    'token' => $token,
+                    //'token' => $token,
                     'message' => 'Registration successfull! please login',
                 ];
                 //$response['message]  cara akses

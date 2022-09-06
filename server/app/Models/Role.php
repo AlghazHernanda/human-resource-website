@@ -22,4 +22,11 @@ class Role extends Model
         //relasi one to many
         return $this->hasMany(Employee::class);
     }
+
+    public function division_role()
+    {
+        //relasi one to one
+        //namanya jadi division_employee, dan mengambil user id
+        return $this->belongsTo(Division::class, 'division_id');
+    }
 }
