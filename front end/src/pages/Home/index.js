@@ -6,7 +6,6 @@ export default function Home() {
     return (
         <div className='layout-grid'>
             <SideBar />
-            <Login />
         </div>
     )
 }
