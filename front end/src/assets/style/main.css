@@ -1,3 +1,38 @@
 
+.btn-primary {
+    color: #fff;
+    background-color: #004C9B !important;
+    border-color: #004C9BFE !important;
+}
 
+.reset {
+    color: black;
+}
+
+.logo {
+    background-color: #004C9B;
+}
+
+.gap {
+    height: 40px;
+}
+
+.container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    overflow: hidden;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+Col {
+    margin: 20px;
+    padding: 10px;
+}
+
+#formarea {
+    background-color: rgb(227, 227, 227);
+}
 

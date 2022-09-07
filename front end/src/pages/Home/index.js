@@ -1,6 +1,6 @@
 import React from 'react';
 import SideBar from '../../component/SideBar';
-import Login from '../LoginPage/gagal';
+import LoginPage from '../LoginPage';
 
 export default function Home() {
     return (

@@ -1,13 +1,10 @@
-html {
-    background-color: aliceblue;
-}
-
 .login_card {
-    background-color: white;
+    background-color: red;
     padding: 1rem;
-    margin: 20px;
+    margin: 1px;
+    height: 100%;
     border-radius: 8px;
-    position: relative;
+    position: static;
 }
 
 .btn_container {
@@ -18,20 +15,35 @@ html {
 .loginContainer {
     position: static;
     align-items: center;
+    margin: 0 auto;
     justify-content: center;
+    width: 50%;
+    height: 50%;
     margin: 20vw;
     padding: 4vh;
     border-color: antiquewhite;
-}
-
-.layout_grid {
     display: grid;
-    height: 90vh;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: none;
+    grid-template-columns:  1fr 1fr;
 }
 
 .form_group {
     margin: 5% 20% 5% 20%;
+}
+
+img {
+    width: 300px; 
+    height: 337px; 
+    object-fit: cover; 
+    object-position: 100% 0;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #813AFE !important;
+    border-color: #813AFE !important;
+}
+
+.reset {
+    color: black;
 }
 
