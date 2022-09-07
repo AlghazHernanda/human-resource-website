@@ -2,10 +2,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;
-    height: 100%;
+    min-width: 400px;
+    height: 100vh;
     background-color: #004C9B;
-    border-right: 1px solid #e6e6e6;
     z-index: 100;
     overflow-y: auto;
     transition: all 0.3s ease;
@@ -23,13 +22,6 @@
     justify-content: center;
     align-items: center;
     background-color: #004C9B;
-    color: white;
     font-size: 1.5rem;
     font-weight: 600;
-    border-bottom: 1px solid #e6e6e6;
-}
-
-.logoImage {
-    background-color: violet;
-    object-fit: contain;
 }

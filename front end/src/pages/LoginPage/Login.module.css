@@ -2,16 +2,8 @@ html {
     background-color: aliceblue;
 }
 
-.card {
+.login_card {
     background-color: white;
-    padding: 1rem;
-    margin: 20px;
-    border-radius: 8px;
-    position: relative;
-}
-
-.cardLogin {
-    background-color: rgb(255, 251, 251);
     padding: 1rem;
     margin: 20px;
     border-radius: 8px;
@@ -23,30 +15,20 @@ html {
     align-items: center;
 }
 
-.login_wrapper {
-    background-color: #004C9B;
-    position: relative;
+.loginContainer {
+    position: static;
     align-items: center;
+    justify-content: center;
     margin: 20vw;
     padding: 4vh;
+    border-color: antiquewhite;
 }
 
 .layout_grid {
     display: grid;
     height: 90vh;
-    grid-template-columns: 352px 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: none;
-}
-
-.sidebar {
-    background-color: #004C9B;
-    height: 100vh;
-}
-
-.sidebarMenu {
-    background-color: #004C9B;
-    height: 100%;
-    padding: 1rem;
 }
 
 .form_group {
