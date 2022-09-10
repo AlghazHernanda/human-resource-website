@@ -18,6 +18,12 @@ class Program extends Model
         //namanya jadi division_employee, dan mengambil user id
         return $this->belongsTo(Division::class, 'division_id');
     }
+    public function employee_program()
+    {
+        //relasi one to one
+        //namanya jadi role_employee, dan mengambil user id
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
     public function role_employee_program()
     {
         //relasi one to one
