@@ -49,7 +49,7 @@ class EmployeeController extends Controller
             ], 401);
         }
 
-        $token = $employee->createToken('myapptoken')->plainTextToken;
+        $token = $employee->createToken($request['email'], ['employee'])->plainTextToken;
 
         $response = [
             'employee' => $employee,
