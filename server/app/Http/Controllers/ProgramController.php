@@ -35,7 +35,33 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            // mengvalidasi data nya agar ga ngasal
+            $validatedData = $request->validate([
+                'program_name' => 'required|max:255', //wajib diisi | maksimal 255
+                'subprogram_name' => 'required|max:255',
+                'division_id' => 'required',
+                'role_id' => 'required',
+                'user_id' => 'required',
+                'employee_id' => 'required',
+                'progress' => 'required|max:255',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+                'desc' => 'required|max:255',
+
+            ]);
+
+            $program = Program::create($validatedData); //masukin ke database
+
+            $response = [
+                'program' => $program,
+                'message' => 'Program succesfull create',
+            ];
+            //$response['message]  cara akses
+            return response($response, 201);
+        } catch (\Throwable $th) {
+            return response($th, 400);
+        }
     }
 
     /**
