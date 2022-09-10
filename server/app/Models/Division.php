@@ -19,6 +19,12 @@ class Division extends Model
         return $this->hasMany(Employee::class);
     }
 
+    public function divisions_program()
+    {
+        //relasi one to many
+        return $this->hasMany(Program::class);
+    }
+
     public function divisions_role()
     {
         //relasi one to many
