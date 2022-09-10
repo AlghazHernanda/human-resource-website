@@ -45,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user_program()
+    {
+        //relasi one to many
+        return $this->hasMany(Program::class);
+    }
 }
