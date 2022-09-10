@@ -20,12 +20,12 @@ class CreateProgramsTable extends Migration
             $table->foreignId('division_id');
             $table->foreignId('role_id');
             $table->foreignId('user_id'); //PIC
+            $table->foreignId('employee_id');
             $table->string('status')->default("pending");
             $table->string('progress');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('desc');
-            $table->string('no_telepon')->nullable();
             $table->timestamps();
         });
     }
