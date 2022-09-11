@@ -66,4 +66,10 @@ class Employee extends Authenticatable
         //namanya jadi role_employee, dan mengambil user id
         return $this->belongsTo(Role::class, 'gaji');
     }
+
+    public function employee_program_e()
+    {
+        //relasi one to many
+        return $this->hasMany(Program::class);
+    }
 }
