@@ -143,6 +143,16 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        try {
+            Program::destroy($program->id);
+
+            $response = [
+                'message' => 'Program succesfull delete',
+            ];
+
+            return response($response, 200);
+        } catch (\Throwable $th) {
+            return response($th, 400);
+        }
     }
 }
