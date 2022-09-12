@@ -152,7 +152,7 @@ class ProgramController extends Controller
 
             return response($response, 200);
         } catch (\Throwable $th) {
-            return response($th, 400);
+            return response($th, 404);
         }
     }
 }
