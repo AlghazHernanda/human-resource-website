@@ -17,11 +17,24 @@
     padding: 1rem;
 }
 
-.Logo {
+.logo {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #004C9B;
     font-size: 1.5rem;
     font-weight: 600;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    grid-area: navbar;
+    background-color: white;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
 }
