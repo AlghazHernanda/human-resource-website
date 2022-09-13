@@ -34,6 +34,7 @@ class HRController extends Controller
             'employee_gaji' =>  $employee_gaji
         ];
         return response($response, 200);
+        //return response($response, 200)->json(['valid' => auth()->check()]);
     }
 
     //login

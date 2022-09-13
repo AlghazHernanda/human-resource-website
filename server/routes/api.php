@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HRController;
+use App\Http\Controllers\ProgramController;
 use App\Models\Employee;
+use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //protected route
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'ability:employee']], function () {
     Route::post('/logout', [HRController::class, 'logout']);
 
     Route::get('/index', [HRController::class, 'index']);
@@ -44,6 +46,13 @@ Route::post('/loginEmployee', [EmployeeController::class, 'authenticate']);
 
 Route::get('/editEmployee/{employee:id}', [EmployeeController::class, 'edit']);
 Route::put('/editEmployee/{employee:id}', [EmployeeController::class, 'update']);
+
+
+//program
+Route::post('/storeProgram', [ProgramController::class, 'store']);
+Route::get('/editProgram/{program:id}', [ProgramController::class, 'edit']);
+Route::put('/editProgram/{program:id}', [ProgramController::class, 'update']);
+Route::delete('/deleteProgram/{program:id}', [ProgramController::class, 'destroy']);
 
 
 
