@@ -11,6 +11,7 @@ import {
 import logo from '../../assets/images/logofull.png';
 import { useNavigate, Link } from "react-router-dom";
 import styles from './style.module.css';
+import { fixControlledValue } from "antd/lib/input/Input";
 const { Sider } = Layout;
 
 
@@ -45,7 +46,7 @@ export default function LayoutPage() {
     }
     const navigate = useNavigate();
     return (
-            <Sider theme='dark' style={{minWidth: '60vw'}} className={ styles.sidebarClass } collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+            <Sider theme='dark' style={{minWidth: '60vw', position: 'fixed'}} className={ styles.sidebarClass } collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <Link to = '/'>
                     <div className={ styles.logo }>
                         <img width='100vh' className="logoImage" src={logo} alt="logo" />

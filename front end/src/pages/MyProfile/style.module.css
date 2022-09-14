@@ -1,11 +1,29 @@
 .profileName {
-
-}
-
-.profilePicture {
-
+    margin: 15px 5px 5px 5px;
+    padding: 5px;
 }
 
 .profileInfo {
-    
+    display: grid;
+    height: 60vh;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 60px 1fr;
 }
+
+.profilePictureArea {
+    z-index: 1;
+    margin: 5px;
+    padding: 5px;
+    height: 50vh;
+}
+
+.profilePicture {
+    z-index: 0;
+    position: relative;
+}
+
+.profileDetail {
+    margin: 30px;
+    padding: 10px;
+}
+

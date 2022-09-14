@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    min-width: 400px;
+    width: 1px;
     height: 100vh;
     background-color: #004C9B;
     z-index: 100;
@@ -12,9 +12,13 @@
 }
 
 .menuSideBarClass {
+    position: fixed;
     background-color: #004C9B;
     height: 100%;
     padding: 1rem;
+    width: 1px;
+    position: relative;
+    overflow: hidden;
 }
 
 .logo {
@@ -28,8 +32,10 @@
 
 .navbar {
     position: fixed;
+    z-index: 1000;
     top: 0;
-    width: 100%;
+    width: calc(100% - 198px);
+    height: 50px;
     grid-area: navbar;
     background-color: white;
     border-bottom: 1px solid black;

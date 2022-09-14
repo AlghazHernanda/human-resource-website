@@ -41,3 +41,15 @@
     color: black;
 }
 
+.loginButtonForm {
+    margin-top: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginButton {
+    justify-content: center;
+    width: 100%;
+}
+

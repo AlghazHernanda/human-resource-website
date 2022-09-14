@@ -7,7 +7,7 @@ const { Header, Content, Footer } = Layout;
 
 export default function LayoutScreen() {
     return (        
-        <Layout style={{minHeight: '100vh'}}>
+        <Layout style={{ 'margin-left':'200px' }}>
             <SideBar />
             <TopBar />
             <Layout className="site-layout">
@@ -18,7 +18,6 @@ export default function LayoutScreen() {
                     - ganti font default
                     - warna default
                 */}
-                <Header  theme='light' className="site-layout-background" style={{ padding: 0 }} />
                 <Content style={{ margin: '0 16px' }}>
                     <Outlet />
                 </Content>

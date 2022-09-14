@@ -26,6 +26,11 @@ Col {
     background-color: rgb(227, 227, 227);
 }
 
+.site-layout {
+    margin: 40pt 0pt 0pt 0pt;
+    height: 100vh;
+}
+
 .content {
     margin: 10pt;
     padding: 20pt;

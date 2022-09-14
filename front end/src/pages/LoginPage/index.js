@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Login.module.css';
-import { notification } from 'antd';
-import {Col, Container, Row, Button, Form} from "react-bootstrap";
+import {Col, Container, Row, Button} from "react-bootstrap";
+import {Form, Input, notification } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import uiIMG from "../../assets/images/ui.svg";
 import logo from "../../assets/images/logofull.png";
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +15,7 @@ export default function LoginPage() {
 
     const navigate = useNavigate();
 
-    const handleLogin = () => {
+    const handleLoginApi = () => {
         axios.get("https://jsonplaceholder.typicode.com/users").then((response) => {
             const findUser = response.data.find((user) => {
               if (email === user.email && username === user.username) {
@@ -35,6 +36,32 @@ export default function LoginPage() {
           });
         };
 
+    const handleLogin = () => {
+        if (email === "" ||  password === "") {
+            notification.error({
+                message: "Login Failed!",
+                description: "Please fill all the fields",
+            });
+        } else {
+            {/* handleLogin masih ngga semesteinya. Kalo dimasukin pass atau email salah masih bisa */}
+            const findUser = (() => {
+                if (email === "anya@forger.com" && password === "peanuts") {
+                  return true;
+                }
+        
+                return false;
+              });
+            if(email === "anya@forger.com" && password === "peanuts") {
+                navigate("/");
+            } else {
+                notification.error({
+                    message: "Login Failed!",
+                    description: "Email or password is incorrect",
+                });
+            }
+        }
+    };
+
     return (
         <Container className={styles.loginContainer}>
             <Row>
@@ -43,25 +70,30 @@ export default function LoginPage() {
                         <img src={logo} alt="logo" className={styles.logo}/>
                     </div>
                     <div className="gap"></div>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-
-                    <Button variant="primary" className="center" type="submit">
-                        Login
-                    </Button>
-
-                    <div className="text-center mt-3">
-                        <a href="/register" className='reset'>Register</a> II
-                        <a href="/forgot-password" className='reset ml-2'>  Forgot Password</a>
-                    </div>
+                    <Form labelCol={{ span: 8 }} onFinish={handleLogin}>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <Input
+                            onChange={(e) => setEmail(e.target.value)}
+                            autoComplete="false"
+                            name="email"
+                            type="email"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <Input.Password
+                            onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="false"
+                            name="password"
+                            iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                            />
+                        </div>
+                        <div className={ styles.loginButtonForm }>
+                            <Button className = { styles.loginButton } type="primary" htmlType="submit">
+                            Login
+                            </Button>
+                        </div>
                     </Form>
                 </Col>
                 <Col lg={8} md={6} sm={12}>
