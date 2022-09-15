@@ -16,7 +16,7 @@ class ProgramFactory extends Factory
         $status = "pending";
         $progress = "50%";
         return [
-            'program_name' => $this->faker->sentence(mt_rand(2, 3)), //mt_rand = masukin panjang sentece random, jadi minimal 2 kata maksimal 8 kata
+            'program_name' => $this->faker->sentence(mt_rand(2, 3)),
             'subprogram_name' => $this->faker->sentence(mt_rand(2, 3)), //mt_rand = masukin panjang sentece random, jadi minimal 2 kata maksimal 8 kata
             'division_id' => mt_rand(1, 3),
             'role_id' => mt_rand(1, 3),
