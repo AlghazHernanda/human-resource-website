@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProgramController extends Controller
 {
@@ -14,7 +15,14 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        //
+        $hr_program = Program::where('user_id', 1)->get();
+        //$hr_program = Program::where('user_id', Auth::user()->id)->get();
+
+        $response = [
+            'hr_program' => $hr_program,
+
+        ];
+        return response($response, 200);
     }
 
     /**
@@ -149,6 +157,7 @@ class ProgramController extends Controller
             $response = [
                 'message' => 'Program succesfull delete',
             ];
+
 
             return response($response, 200);
         } catch (\Throwable $th) {
