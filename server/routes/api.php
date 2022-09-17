@@ -42,6 +42,7 @@ Route::post('/storeEmployee', [HRController::class, 'storeEmployee']);
 
 
 //route EmployeeController
+Route::get('/programEmployee', [EmployeeController::class, 'index']);
 Route::post('/loginEmployee', [EmployeeController::class, 'authenticate']);
 
 Route::get('/editEmployee/{employee:id}', [EmployeeController::class, 'edit']);
