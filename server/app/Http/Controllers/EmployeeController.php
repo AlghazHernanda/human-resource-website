@@ -2,15 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class EmployeeController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $employee_program = Program::where('employee_id', 1)->get();
+        //$hr_program = Program::where('user_id', Auth::user()->id)->get();
+
+        $response = [
+            'employee_program' => $employee_program,
+
+        ];
+        return response($response, 200);
+    }
 
     /**
      * Display a listing of the resource.
