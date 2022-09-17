@@ -49,6 +49,7 @@ Route::put('/editEmployee/{employee:id}', [EmployeeController::class, 'update'])
 
 
 //program
+Route::get('/program', [ProgramController::class, 'index']);
 Route::post('/storeProgram', [ProgramController::class, 'store']);
 Route::get('/editProgram/{program:id}', [ProgramController::class, 'edit']);
 Route::put('/editProgram/{program:id}', [ProgramController::class, 'update']);
