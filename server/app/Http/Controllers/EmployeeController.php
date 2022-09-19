@@ -20,8 +20,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee_program = Program::where('employee_id', 1)->get();
-        //$hr_program = Program::where('user_id', Auth::user()->id)->get();
+        // $employee_program = Program::where('employee_id', 1)->get();
+        $hr_program = Program::where('user_id', Auth::user()->id)->get();
 
         $response = [
             'employee_program' => $employee_program,
