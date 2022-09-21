@@ -74,9 +74,11 @@ class EmployeeController extends Controller
         }
 
         $token = $employee->createToken($request['email'], ['employee'])->plainTextToken;
+        //$id = Employee::id();
 
         $response = [
             'employee' => $employee,
+            //'id' => $id,
             'token' => $token
         ];
 
