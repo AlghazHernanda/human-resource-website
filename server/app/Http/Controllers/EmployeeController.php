@@ -20,14 +20,20 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employee_program = Program::where('employee_id', 1)->get();
-        // $employee_program = Program::where('user_id', Auth::user()->id)->get();
+        try {
+            // $employee_program = Program::where('employee_id', 1)->get();
+            $employee_program = Program::where('user_id', Auth::user()->id)->get();
 
-        $response = [
-            'employee_program' => $employee_program,
+            $response = [
+                'employee_program' => $employee_program,
 
-        ];
-        return response($response, 200);
+            ];
+            return response($response, 200);
+        } catch (\Throwable $th) {
+            //report($th);
+
+            return response($th, 404);
+        }
     }
 
     /**
