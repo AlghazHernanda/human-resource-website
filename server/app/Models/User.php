@@ -26,6 +26,7 @@ class User extends Authenticatable
     // biar gapake fillable, ini artinya cuma id doang yg gaboleh di masukin mass assigment
     protected $guarded = ['id'];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
