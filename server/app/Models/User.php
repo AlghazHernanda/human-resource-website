@@ -23,7 +23,7 @@ class User extends Authenticatable
     //     'password',
     // ];
 
-    // biar gapake fillable, ini artinya cuma id doang yg gaboleh di masukin mass assigment
+    //biar gapake fillable, ini artinya cuma id doang yg gaboleh di masukin mass assigment
     protected $guarded = ['id'];
 
 
