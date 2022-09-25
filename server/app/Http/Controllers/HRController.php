@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Division;
@@ -11,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use JWTAuth;
+use Illuminate\Support\Facades\Validator;
+
 
 class HRController extends Controller
 {
@@ -40,39 +45,95 @@ class HRController extends Controller
     //login
     public function authenticate(Request $request)
     {
-        $fields = $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string'
+        // $fields = $request->validate([
+        //     'email' => 'required|string',
+        //     'password' => 'required|string'
+        // ]);
+
+        // // verifikasi email
+        // $user = User::where('email', $fields['email'])->first();
+
+        // // verifikasi password
+        // if (!$user || !Hash::check($fields['password'], $user->password)) {
+        //     return response([
+        //         'message' => 'Bad creds'
+        //     ], 401);
+        // }
+
+        // $token = $user->createToken('myapptoken')->plainTextToken;
+
+
+        // $response = [
+        //     'user' => $user,
+        //     'token' => $token
+        // ];
+
+        // return response($response, 201);
+
+        $credentials = $request->only('email', 'password');
+
+        //valid credential
+        $validator = Validator::make($credentials, [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6|max:50'
         ]);
 
-        // verifikasi email
-        $user = User::where('email', $fields['email'])->first();
-
-        // verifikasi password
-        if (!$user || !Hash::check($fields['password'], $user->password)) {
-            return response([
-                'message' => 'Bad creds'
-            ], 401);
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
         }
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        //Request is validated
+        //Crean token
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Login credentials are invalid.',
+                ], 400);
+            }
+        } catch (JWTException $e) {
+            return $credentials;
+            return response()->json([
+                'success' => false,
+                'message' => 'Could not create token.',
+            ], 500);
+        }
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
-        return response($response, 201);
+        //Token created, return with success response and jwt token
+        return response()->json([
+            'success' => true,
+            'token' => $token,
+        ]);
     }
 
     //logout
     public function logout(Request $request)
     {
-        auth()->user()->tokens()->delete();
+        //valid credential
+        $validator = Validator::make($request->only('token'), [
+            'token' => 'required'
+        ]);
 
-        return [
-            'message' => 'Logged out'
-        ];
+        //Send failed response if request is not valid
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 200);
+        }
+
+        //Request is validated, do logout        
+        try {
+            JWTAuth::invalidate($request->token);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User has been logged out'
+            ]);
+        } catch (JWTException $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, user cannot be logged out'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -102,11 +163,8 @@ class HRController extends Controller
 
                 $user = User::create($validatedData); //masukin ke database
 
-                $token = $user->createToken('myapptoken')->plainTextToken;
-
                 $response = [
                     'user' => $user,
-                    'token' => $token,
                     'message' => 'Registration successfull! please login',
                 ];
                 //$response['message]  cara akses

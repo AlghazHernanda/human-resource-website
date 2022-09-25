@@ -6,11 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,8 +23,9 @@ class User extends Authenticatable
     //     'password',
     // ];
 
-    // biar gapake fillable, ini artinya cuma id doang yg gaboleh di masukin mass assigment
+    //biar gapake fillable, ini artinya cuma id doang yg gaboleh di masukin mass assigment
     protected $guarded = ['id'];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,6 +47,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
     public function user_program()
     {
         //relasi one to many

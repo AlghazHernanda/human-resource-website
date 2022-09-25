@@ -20,28 +20,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 //protected route
-Route::group(['middleware' => ['auth:sanctum', 'ability:employee']], function () {
-    Route::post('/logout', [HRController::class, 'logout']);
+Route::group(['middleware' => ['jwt.verify']], function () {
 
+    //hrController
+    Route::post('/logout', [HRController::class, 'logout']);
     Route::get('/index', [HRController::class, 'index']);
+    Route::post('/register', [HRController::class, 'store']);
+    //storeRole
+    Route::post('/storeRole', [HRController::class, 'storeRole']);
+    //storedivision
+    Route::post('/storeDivision', [HRController::class, 'storeDivision']);
+    //storeEmployee
+    Route::post('/storeEmployee', [HRController::class, 'storeEmployee']);
+
+
 
     //route EmployeeController
     Route::post('/logoutEmployee', [EmployeeController::class, 'logout']);
 });
-//Hr register and login 
-Route::post('/register', [HRController::class, 'store']);
 
+//hrControlller
+//register hr
+Route::post('/register', [HRController::class, 'store']);
 Route::post('/login', [HRController::class, 'authenticate']);
-//storeRole
-Route::post('/storeRole', [HRController::class, 'storeRole']);
-//storedivision
-Route::post('/storeDivision', [HRController::class, 'storeDivision']);
-//storeEmployee
-Route::post('/storeEmployee', [HRController::class, 'storeEmployee']);
+
 
 
 
 //route EmployeeController
+Route::get('/programEmployee', [EmployeeController::class, 'index']);
 Route::post('/loginEmployee', [EmployeeController::class, 'authenticate']);
 
 Route::get('/editEmployee/{employee:id}', [EmployeeController::class, 'edit']);
@@ -49,6 +56,7 @@ Route::put('/editEmployee/{employee:id}', [EmployeeController::class, 'update'])
 
 
 //program
+Route::get('/program', [ProgramController::class, 'index']);
 Route::post('/storeProgram', [ProgramController::class, 'store']);
 Route::get('/editProgram/{program:id}', [ProgramController::class, 'edit']);
 Route::put('/editProgram/{program:id}', [ProgramController::class, 'update']);
