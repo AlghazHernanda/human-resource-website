@@ -36,3 +36,12 @@ Col {
     padding: 20pt;
 }
 
+/* .ant-menu.ant-menu-inline li.ant-menu-item:last-child{
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+  } */
+  
+.ant-menu .ant-menu-inline .ant-menu-item-only-child {
+    background-color: #004C9B !important;
+}

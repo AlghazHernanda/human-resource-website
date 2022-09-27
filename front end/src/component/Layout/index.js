@@ -12,7 +12,6 @@ export default function LayoutScreen() {
             <TopBar />
             <Layout className="site-layout">
                 {/* 
-                    - cara biar navbar ngga ngeblok konten
                     - cara biar sidebar ganti theme color
                     - cara biar logout ada di bagian bawah sidebar
                     - ganti font default

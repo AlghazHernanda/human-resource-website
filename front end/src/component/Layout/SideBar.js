@@ -15,12 +15,13 @@ import { fixControlledValue } from "antd/lib/input/Input";
 const { Sider } = Layout;
 
 
-function getItem(label, key, icon, children, onClick, style) {
+function getItem(label, key, icon, children, style) {
     return {
         label,
         key,
         icon,
         children,
+        style
     };
 }
 
@@ -35,7 +36,7 @@ const items = [
         getItem('Employees', 'employees'),
     ], null),
     getItem('help', 'help', <QuestionCircleOutlined />),
-    getItem('Sign Out', 'signout', <LogoutOutlined />, null, { color: 'red'}),
+    getItem('Sign Out', 'signout', <LogoutOutlined />, null, { color:'red' , bottom: '80px', position: 'absolute' }),
 ]
 
 export default function LayoutPage() {
@@ -46,13 +47,13 @@ export default function LayoutPage() {
     }
     const navigate = useNavigate();
     return (
-            <Sider theme='dark' style={{minWidth: '60vw', position: 'fixed'}} className={ styles.sidebarClass } collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <Link to = '/'>
-                    <div className={ styles.logo }>
-                        <img width='100vh' className="logoImage" src={logo} alt="logo" />
-                    </div>     
-                </Link>
-                <Menu theme='dark' className={ styles.menuSideBarClass } defaultSelectedKeys={['1']} mode="inline" items={ items } onClick={({item, key}) => handleChangePage(key)}/>
-            </Sider>
+        <Sider theme='dark' trigger={null} style={{minWidth: '60vw', position: 'fixed'}} className={ styles.sidebarClass } collapsible collapsed={collapsed}>
+            <Link to = '/'>
+                <div className={ styles.logo }>
+                    <img width='100vh' className="logoImage" src={logo} alt="logo" />
+                </div>     
+            </Link>
+            <Menu theme='dark' className={ styles.menuSideBarClass } defaultSelectedKeys={['1']} mode="inline" items={ items } onClick={({item, key}) => handleChangePage(key)}/>
+        </Sider>
     )
 }
