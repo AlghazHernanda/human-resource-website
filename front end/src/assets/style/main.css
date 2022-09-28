@@ -3,6 +3,7 @@
     color: #fff;
     background-color: #004C9B !important;
     border-color: #004C9BFE !important;
+    border-radius: 10px;
 }
 
 .reset {
@@ -26,6 +27,18 @@ Col {
     background-color: rgb(227, 227, 227);
 }
 
+.logo {
+    width: 200px; 
+    object-fit: cover; 
+    object-position: 100% 0;
+    background-color: #004C9B;
+}
+
+.loginButton {
+    justify-content: center;
+    width: 100%;
+}
+
 .site-layout {
     margin: 40pt 0pt 0pt 0pt;
     height: 100vh;
@@ -44,4 +57,20 @@ Col {
   
 .ant-menu .ant-menu-inline .ant-menu-item-only-child {
     background-color: #004C9B !important;
+}
+
+.createButtonArea {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.createButton {
+    background-color: #004C9B;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    border-radius: 10px;
+    border-color: #004C9B;
 }

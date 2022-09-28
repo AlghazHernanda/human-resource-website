@@ -1,6 +1,8 @@
 import React , { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styles from './style.module.css';
+import logo from "../../assets/images/logofull.png";
 import axios from 'axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -94,6 +96,7 @@ export default function Register(){
             ) : (
                 <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <img src={logo} alt="logo" className="logo"/>
                     <h1>Register</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
@@ -167,15 +170,17 @@ export default function Register(){
                             Must match the first password input field.
                         </p>
 
-                        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                        <button className="loginButton btn-primary" type="primary" disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
                     </form>
+                    <center>
                     <p>
                         Already registered?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <a href="/login">Sign In</a>
                         </span>
                     </p>
+                    </center>
                 </section>
             )}
         </div>

@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import LayoutScreen from './component/Layout';
 import Roles from './pages/Database/Roles';
 import Divisions from './pages/Database/Divisions';
+import Programs from './pages/Database/Programs';
 import Help from './pages/Help';
 import Register from './pages/Register/index';
 
@@ -29,7 +30,7 @@ function App() {
 
             <Route path="/roles" element={<Roles />} />
             <Route path="/divisions" element={<Divisions />} />
-            <Route path="/program" element={<h1>Under Construction</h1>} />
+            <Route path="/program" element={<Programs />} />
             <Route path="/employees" element={<h1>Under Construction</h1>} />
             <Route path="/help" element={<Help />} />
             <Route path="/signout" element={<h1>Under Construction</h1>} />

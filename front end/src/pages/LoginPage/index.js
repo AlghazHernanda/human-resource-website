@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Login.module.css';
+import styles from './style.module.css';
 import {Col, Container, Row, Button} from "react-bootstrap";
 import {Form, Input, notification } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
@@ -67,7 +67,7 @@ export default function LoginPage() {
             <Row>
                 <Col id="formarea" lg={4} md={6} sm={12}>
                     <div className='d-flex justify-content-center'>
-                        <img src={logo} alt="logo" className={styles.logo}/>
+                        <img src={logo} alt="logo" className="logo"/>
                     </div>
                     <div className="gap"></div>
                     <Form labelCol={{ span: 8 }} onFinish={handleLogin}>
@@ -90,7 +90,7 @@ export default function LoginPage() {
                             />
                         </div>
                         <div className={ styles.loginButtonForm }>
-                            <Button className = { styles.loginButton } type="primary" htmlType="submit">
+                            <Button className = "loginButton" type="primary" htmlType="submit">
                             Login
                             </Button>
                         </div>
