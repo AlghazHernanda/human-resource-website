@@ -16,6 +16,7 @@ class ProgramController extends Controller
      */
     public function index()
     {
+        //untuk nampilin program sesuai hr yang login
         //$hr_program = Program::where('user_id', 1)->get();
         $hr_program = Program::where('user_id', Auth::user()->id)->get();
 
@@ -36,7 +37,6 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
