@@ -18,15 +18,15 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $userInfo = JWTAuth:User()->id;
-        //$hr_program = Program::where('user_id', 1)->get();
-        $hr_program = Program::where('user_id', $userInfo->id);
+        $userInfo = JWTAuth::user();
+        $hr_program = Program::where('user_id', 2)->get();
+        //$hr_program = Program::where('user_id', $userInfo->id);
 
-        $id = auth('api')->user();
+
 
         $response = [
             'hr_program' => $hr_program,
-            'id' => $id->id
+            'id' => $userInfo
 
         ];
         return response($response, 200);
