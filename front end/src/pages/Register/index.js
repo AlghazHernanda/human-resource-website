@@ -1,14 +1,14 @@
 import React , { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {Col, Container, Row, Button} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import styles from './style.module.css';
 import uiIMG from "../../assets/images/ui.svg";
 import logo from "../../assets/images/logofull.png";
 import axios from 'axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
 const REGISTER_URL = '/api/register';
 
 export default function Register(){
@@ -84,7 +84,7 @@ export default function Register(){
             } else {
                 setErrMsg('Registration Failed')
             }
-            //errRef.current.focus();
+            errRef.current.focus();
         }
     }
 
@@ -115,6 +115,7 @@ export default function Register(){
                                 <input
                                     type="text"
                                     id="username"
+                                    className={styles.customInput}
                                     ref={userRef}
                                     autoComplete="off"
                                     onChange={(e) => setUser(e.target.value)}
@@ -141,6 +142,7 @@ export default function Register(){
                                 <input
                                     type="password"
                                     id="password"
+                                    className={styles.customInput}
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
                                     required
@@ -152,8 +154,7 @@ export default function Register(){
                                 <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
                                     8 to 24 characters.<br />
-                                    Must include uppercase and lowercase letters, a number and a special character.<br />
-                                    Allowed special characters: <span aria-label="exclamation mark">!</span> <span aria-label="at symbol">@</span> <span aria-label="hashtag">#</span> <span aria-label="dollar sign">$</span> <span aria-label="percent">%</span>
+                                    Must include uppercase and lowercase letters and a number.<br />
                                 </p>
 
 

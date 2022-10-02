@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
 import { Layout, Menu } from 'antd';
 import {
     UserOutlined,
@@ -11,7 +12,6 @@ import {
 import logo from '../../assets/images/logofull.png';
 import { useNavigate, Link } from "react-router-dom";
 import styles from './style.module.css';
-import { fixControlledValue } from "antd/lib/input/Input";
 const { Sider } = Layout;
 
 
@@ -41,11 +41,25 @@ const items = [
 
 export default function LayoutPage() {
     const [collapsed, setCollapsed] = useState(false);
+
+    const { setAuth } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const logout = async () => {
+        // if used in more components, this should be in context 
+        // axios to /logout endpoint 
+        setAuth({});
+        navigate('/login');
+    }
+
     const handleChangePage = (page) => {
         console.log(page);
-        navigate(`/${page}`);
+        if(page === 'signout') {
+            logout();
+        } else {
+            navigate(`/${page}`);
+        }
     }
-    const navigate = useNavigate();
     return (
         <Sider theme='dark' trigger={null} style={{minWidth: '60vw', position: 'fixed'}} className={ styles.sidebarClass } collapsible collapsed={collapsed}>
             <Link to = '/'>

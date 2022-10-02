@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 
+import { AuthProvider } from './context/AuthProvider';
+
 import LoginPage from './pages/LoginPage/index';
 import MyProfile from './pages/MyProfile';
 import Performance from './pages/Performance';
@@ -18,27 +20,30 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LayoutScreen />}>
-            <Route index element={<MyProfile />} />
-            <Route path="/myprofile" element={<MyProfile />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/performance" element={<Performance /> } />
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LayoutScreen />}>
+              <Route index element={<MyProfile />} />
+              <Route path="/myprofile" element={<MyProfile />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/performance" element={<Performance /> } />
 
-            <Route path="/performance/view/:userID" element={<viewPerformance /> } />
-            <Route path="/performance/edit/:userID" element={<editPerformance /> } />
+              <Route path="/performance/view/:userID" element={<viewPerformance /> } />
+              <Route path="/performance/edit/:userID" element={<editPerformance /> } />
 
-            <Route path="/roles" element={<Roles />} />
-            <Route path="/divisions" element={<Divisions />} />
-            <Route path="/program" element={<Programs />} />
-            <Route path="/employees" element={<h1>Under Construction</h1>} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/signout" element={<h1>Under Construction</h1>} />
-          </Route>
-          
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
+              <Route path="/roles" element={<Roles />} />
+              <Route path="/divisions" element={<Divisions />} />
+              <Route path="/program" element={<Programs />} />
+              <Route path="/employees" element={<h1>Under Construction</h1>} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/signout" element={<h1>Under Construction</h1>} />
+            </Route>
+            
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<Register />} />
+    
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

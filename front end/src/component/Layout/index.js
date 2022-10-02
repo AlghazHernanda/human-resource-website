@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";
 import { Layout } from 'antd';
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export default function LayoutScreen() {
     return (        

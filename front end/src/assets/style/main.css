@@ -42,7 +42,7 @@ Col {
 
 .site-layout {
     margin: 40pt 0pt 0pt 0pt;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .content {
