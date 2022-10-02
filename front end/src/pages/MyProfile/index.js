@@ -38,7 +38,7 @@ export default function MyProfile () {
                             return (
                                 <tr>
                                     <tr>
-                                        <td><b>Full Name     </b></td><td><b> : </b></td><td>{item.name}</td>
+                                        <td><b>Full Name     </b></td><td><b>: </b></td><td>{item.name}</td>
                                     </tr>
                                     <tr>
                                         <td><b>Birth Date    </b></td><td><b> : </b></td><td>{item.birthdate}</td>

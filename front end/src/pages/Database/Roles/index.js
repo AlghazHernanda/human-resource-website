@@ -42,7 +42,7 @@ export default function Roles() {
                         },
                         ]}
                     >
-                        <Input placeholder='Enter employee name' />
+                        <Input className='textInput' placeholder='Enter employee name' />
                     </Form.Item>
                     <Form.Item
                         name="division"
@@ -53,7 +53,7 @@ export default function Roles() {
                         },
                         ]}
                     >
-                        <Select
+                        <Select className='textInput'
                         placeholder="Choose a division"
                         allowClear
                         >
@@ -80,6 +80,17 @@ export default function Roles() {
                             </Form.Item>
                         ) : null
                         }
+                    </Form.Item>
+                    <Form.Item
+                        name="salary"
+                        label="Salary"
+                        rules={[
+                        {
+                            required: true,
+                        },
+                        ]}
+                    >
+                        <Input className='textInput' placeholder='Enter Salary' />
                     </Form.Item>
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">

@@ -5,7 +5,7 @@ export default  function Help() {
     return (
         <div className='content'>
             <div className={ styles.introduction }>
-                <h2>Hello, Anya Forger (to be substitute with backend)</h2>
+                <h2>Hello, Anya Forger</h2>
             </div>
             <div className={ styles.services }>
                 <h4>Ini adalah halaman bantuan</h4>

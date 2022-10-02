@@ -17,7 +17,7 @@ export default function LayoutScreen() {
                     - ganti font default
                     - warna default
                 */}
-                <Content style={{ margin: '0 16px' }}>
+                <Content style={{ margin: '0 16px' , minHeight: 'auto'}}>
                     <Outlet />
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>HAHAHIHI Tau tau deadline :(</Footer>

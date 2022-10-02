@@ -42,7 +42,7 @@ export default function Divisions() {
                         },
                         ]}
                     >
-                        <Input placeholder='Enter Division name' />
+                        <Input className='textInput' placeholder='Enter Division name' />
                     </Form.Item>
                     
                     <Form.Item

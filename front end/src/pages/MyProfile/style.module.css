@@ -23,7 +23,15 @@
 }
 
 .profileDetail {
-    margin: 30px;
+    margin-left: 30px;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+tr {
     padding: 10px;
 }
 

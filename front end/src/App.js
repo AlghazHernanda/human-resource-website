@@ -5,7 +5,7 @@ import './App.css';
 import LoginPage from './pages/LoginPage/index';
 import MyProfile from './pages/MyProfile';
 import Performance from './pages/Performance';
-import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import LayoutScreen from './component/Layout';
 import Roles from './pages/Database/Roles';
 import Divisions from './pages/Database/Divisions';
@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<LayoutScreen />}>
             <Route index element={<MyProfile />} />
             <Route path="/myprofile" element={<MyProfile />} />
-            <Route path="/dashboard" element={<h1>Under Construction</h1>} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/performance" element={<Performance /> } />
 
             <Route path="/performance/view/:userID" element={<viewPerformance /> } />

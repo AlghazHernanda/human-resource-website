@@ -16,8 +16,9 @@ class ProgramController extends Controller
      */
     public function index()
     {
+        $userInfo = auth('api')->user();
         //$hr_program = Program::where('user_id', 1)->get();
-        $hr_program = Program::where('user_id', Auth::user()->id)->get();
+        $hr_program = Program::where('user_id', $userInfo->id);
 
         $id = auth('api')->user();
 
@@ -36,7 +37,6 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
