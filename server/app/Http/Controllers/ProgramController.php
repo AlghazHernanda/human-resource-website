@@ -6,7 +6,7 @@ use App\Models\Program;
 use Illuminate\Http\Request;
 //use Auth;
 use Illuminate\Support\Facades\Auth;
-//use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 
 class ProgramController extends Controller
@@ -18,15 +18,15 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        $userInfo = JWTAuth::user();
-        $hr_program = Program::where('user_id', 2)->get();
-        //$hr_program = Program::where('user_id', $userInfo->id);
+        $userInfo = JWTAuth::parseToken()->authenticate();
+        //$hr_program = Program::where('user_id', 2)->get();
+        $hr_program = Program::where('user_id', $userInfo->id)->get();
 
 
 
         $response = [
             'hr_program' => $hr_program,
-            'id' => $userInfo
+            'id' => $userInfo->id
 
         ];
         return response($response, 200);
