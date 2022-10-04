@@ -21,8 +21,9 @@ use Illuminate\Support\Facades\Route;
 
 //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 github acces token
 
-//protected route
-Route::group(['middleware' => ['jwt.verify'], ['cors']], function () {
+//protected route 
+Route::group(['middleware' => ['jwt.auth', 'cors']], function () {
+    //kalo pake jwt.verify, misal gaada token langsung ada error handling nya
 
     //hrController
     Route::post('/logout', [HRController::class, 'logout']);
@@ -39,6 +40,12 @@ Route::group(['middleware' => ['jwt.verify'], ['cors']], function () {
 
     //route EmployeeController
     Route::post('/logoutEmployee', [EmployeeController::class, 'logout']);
+
+    //route program
+    Route::get('/program', [ProgramController::class, 'index']);
+    Route::post('/storeProgram', [ProgramController::class, 'store']);
+    Route::put('/editProgram/{program:id}', [ProgramController::class, 'update']);
+    Route::delete('/deleteProgram/{program:id}', [ProgramController::class, 'destroy']);
 });
 
 //hrControlller
@@ -58,11 +65,8 @@ Route::put('/editEmployee/{employee:id}', [EmployeeController::class, 'update'])
 
 
 //program
-Route::get('/program', [ProgramController::class, 'index']);
-Route::post('/storeProgram', [ProgramController::class, 'store']);
 Route::get('/editProgram/{program:id}', [ProgramController::class, 'edit']);
-Route::put('/editProgram/{program:id}', [ProgramController::class, 'update']);
-Route::delete('/deleteProgram/{program:id}', [ProgramController::class, 'destroy']);
+
 
 
 
