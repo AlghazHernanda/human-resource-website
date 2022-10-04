@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 //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 github acces token
 
 //protected route 
-Route::group(['middleware' => ['jwt.verify', 'cors']], function () {
+Route::group(['middleware' => ['jwt.auth', 'cors']], function () {
+    //kalo pake jwt.verify, misal gaada token langsung ada error handling nya
 
     //hrController
     Route::post('/logout', [HRController::class, 'logout']);
