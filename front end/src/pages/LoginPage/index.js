@@ -29,8 +29,8 @@ export default function LoginPage(){
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [email, setUser] = useState('');
+    const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
     useEffect(() => {
@@ -39,14 +39,14 @@ export default function LoginPage(){
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [email, password])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ email, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -56,7 +56,7 @@ export default function LoginPage(){
             //console.log(JSON.stringify(response));
             const accessToken = response.data.accessToken;
             const roles = response.data.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            setAuth({ email, password, roles, accessToken });
             setUser('');
             setPwd('');
             navigate(from, { replace: true });
@@ -90,7 +90,7 @@ export default function LoginPage(){
                     ref={userRef}
                     autoComplete="off"
                     onChange={(e) => setUser(e.target.value)}
-                    value={user}
+                    value={email}
                     required
                 />
 
@@ -99,7 +99,7 @@ export default function LoginPage(){
                     type="password"
                     id="password"
                     onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
+                    value={password}
                     required
                 />
                 <div className={ styles.loginButtonForm }>
