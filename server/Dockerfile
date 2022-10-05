@@ -45,6 +45,9 @@ RUN chmod 777 /var/www
 USER www
 
 RUN composer install
+RUN composer update
+RUN php artisan key:generate
+RUN php artisan jwt:secret
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
