@@ -1,10 +1,22 @@
 version: '3'
 services:
+  #Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: hris-app-frontend
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:3000"
+    networks:
+      - hris
   
   #PHP Service
   app:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     image: digitalocean.com/php
     container_name: hris-app
@@ -15,7 +27,7 @@ services:
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
-      - ./:/var/www
+      - ./backend/:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - hris
@@ -27,10 +39,9 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
     volumes:
-      - ./:/var/www
+      - ./backend/:/var/www
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - hris
