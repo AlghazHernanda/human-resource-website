@@ -1,0 +1,47 @@
+.sidebarClass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100vh;
+    background-color: #004C9B !important;
+    z-index: 100;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.menuSideBarClass {
+    position: fixed;
+    background-color: #004C9B !important;
+    height: 100%;
+    padding: 1rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #004C9B;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    width: calc(100% - 198px);
+    height: 50px;
+    grid-area: navbar;
+    background-color: white;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 1rem;
+}
+
