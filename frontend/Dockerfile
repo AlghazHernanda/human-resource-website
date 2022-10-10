@@ -1,4 +1,4 @@
-FROM node:16-slim AS Builder
+FROM node:16-slim
 WORKDIR /app
 COPY . .
 RUN apt-get -y update
