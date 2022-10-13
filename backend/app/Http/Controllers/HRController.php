@@ -186,7 +186,7 @@ class HRController extends Controller
         try {
             // mengvalidasi data nya agar ga ngasal
             $validatedData = $request->validate([
-                'role_name' => 'required', //wajib diisi | maksimal 255
+                'role_name' => 'required|unique:roles', //wajib diisi | maksimal 255
                 'division' => 'required',
                 'salary' => 'required',
 
@@ -203,8 +203,11 @@ class HRController extends Controller
 
             //$response['message]  cara akses
             return response($response, 201);
-        } catch (\Throwable $th) {
-            return response($th, 400);
+        } catch (Exception $e) {
+            $response = [
+                'message' => $e->getMessage()
+            ];
+            return response($response, 400);
         }
     }
 
