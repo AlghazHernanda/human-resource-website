@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Http;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
 
 class HRController extends Controller
@@ -170,8 +171,11 @@ class HRController extends Controller
                 //$response['message]  cara akses
                 return response($response, 201);
             }
-        } catch (\Throwable $th) {
-            return response($th, 400);
+        } catch (Exception $e) {
+            $response = [
+                'message' => $e->getMessage()
+            ];
+            return response($response, 400);
         }
 
         // return "halo";
