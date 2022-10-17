@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import AuthContext from "../../context/AuthProvider";
+import useLogout from "../../hooks/useLogout";
 import { Layout, Menu } from 'antd';
 import {
     UserOutlined,
@@ -44,18 +45,19 @@ export default function LayoutPage() {
 
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
+    const logout = useLogout();
 
-    const logout = async () => {
+    const signout = async () => {
         // if used in more components, this should be in context 
         // axios to /logout endpoint 
-        setAuth({});
+        await logout();
         navigate('/login');
     }
 
     const handleChangePage = (page) => {
         console.log(page);
         if(page === 'signout') {
-            logout();
+            signout();
         } else {
             navigate(`/${page}`);
         }

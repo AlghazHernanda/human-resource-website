@@ -1,12 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styles from './style.module.css';
 import {Col, Container, Row, Button} from "react-bootstrap";
-import {Form, Input, notification } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import uiIMG from "../../assets/images/ui.svg";
 import logo from "../../assets/images/logofull.png";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-// import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 import axios from '../../api/axios';
@@ -52,19 +49,23 @@ export default function LoginPage(){
                     withCredentials: false
                 }
             );
-            console.log(JSON.stringify(response.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response.data.accessToken;
-            const roles = response.data.roles;
-            setAuth({ email, password, roles, accessToken });
-            setUser('');
-            setPwd('');
-            navigate(from, { replace: true });
+            if(!response.data.error){
+                console.log(JSON.stringify(response.data));
+                console.log(JSON.stringify(response));
+                const accessToken = response.data.token;
+                const roles = response.data.roles;
+                setAuth({ email, password, roles, accessToken });
+                setUser('');
+                setPwd('');
+                navigate(from, { replace: true });
+            } else {
+                setErrMsg("Invalid email or password");
+            }            
         } catch (err) {
             if (!err.response) {
                 setErrMsg('No Server Response');
             } else if (err.response.status === 400) {
-                setErrMsg('Missing email or Password');
+                setErrMsg('Wrong email or Password');
             } else if (err.response.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
