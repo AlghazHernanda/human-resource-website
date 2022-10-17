@@ -1741,8 +1741,6 @@
                 "shasum": ""
             },
             "require": {
-                "ext-hash": "*",
-                "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
                 "lcobucci/clock": "^2.0",
