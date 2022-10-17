@@ -6,11 +6,10 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import uiIMG from "../../assets/images/ui.svg";
 import logo from "../../assets/images/logofull.png";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-// import axios from 'axios';
 import useAuth from '../../hooks/useAuth';
 
 import axios from '../../api/axios';
-const LOGIN_URL = '/';
+const LOGIN_URL = '/login';
 
 export default function LoginPage(){
     const { setAuth } = useAuth();

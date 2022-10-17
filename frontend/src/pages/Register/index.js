@@ -5,11 +5,14 @@ import {Col, Container, Row} from "react-bootstrap";
 import styles from './style.module.css';
 import uiIMG from "../../assets/images/ui.svg";
 import logo from "../../assets/images/logofull.png";
-import axios from 'axios';
+
+import useAuth from '../../hooks/useAuth';
+
+import axios from '../../api/axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,24}$/;
-const REGISTER_URL = '/api/register';
+const REGISTER_URL = '/register';
 
 export default function Register(){
     const userRef = useRef();

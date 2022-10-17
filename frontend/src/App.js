@@ -15,8 +15,11 @@ import Programs from './pages/Database/Programs';
 import Help from './pages/Help';
 import Register from './pages/Register/index';
 
+import axios from './api/axios';
+
 
 function App() {
+
   return (
     <div>
       <BrowserRouter>
