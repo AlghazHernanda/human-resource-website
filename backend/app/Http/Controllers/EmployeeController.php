@@ -56,10 +56,17 @@ class EmployeeController extends Controller
 
             ];
             return response($response, 200);
-        } catch (\Throwable $th) {
-            report($th);
+        }
+        // catch (\Throwable $th) {
+        //     report($th);
 
-            // return response($th, 404);
+        //     // return response($th, 404);
+        // }
+        catch (Exception $e) {
+            $response = [
+                'message' => $e->getMessage()
+            ];
+            return response($response, 400);
         }
     }
 
